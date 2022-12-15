@@ -3,8 +3,10 @@ import { deleteAlunosController } from "./controller/aluno/deleteAlunosControlle
 import { getAlunosController } from "./controller/aluno/getAlunosController";
 import { postAlunosController } from "./controller/aluno/postAlunosController";
 import { updateAlunosController } from "./controller/aluno/updateAlunosController";
+import { deleteMateriasController } from "./controller/materia/deleteMateriasController";
 import { getMateriasController } from "./controller/materia/getMateriasController";
 import { postMateriasController } from "./controller/materia/postMateriasController";
+import { putMateriasController } from "./controller/materia/putMateriasController";
 import { getTurmasController } from "./controller/turma/getTurmasController";
 import { postTurmaController } from "./controller/turma/postTurmaController";
 
@@ -23,5 +25,7 @@ rota.put('/alunos/update', new updateAlunosController().handle)
 //MATERIAS
 rota.post('/materias', new postMateriasController().handle)
 rota.get('/materias', new getMateriasController().handle)
+rota.put('/materias/update', new putMateriasController().handle)
+rota.delete('/materias/remove', new deleteMateriasController().handle)
 
 export {rota}
