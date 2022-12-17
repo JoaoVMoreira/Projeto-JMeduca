@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import base from '../../axios/config'
+import base from '../axios/config'
 
 export default function Modal({conteudo, close}){
     const [nome, setNome] = useState('')

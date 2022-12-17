@@ -1,12 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
-import {useContext, useEffect, useState } from "react";
-import base from "../axios/config";
+import {useEffect, useState } from "react";
+import base from "../../components/axios/config";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { BiEdit } from "react-icons/bi";
-import Modal from '../components/Modal/modal'
-import InfoModal from '../components/Modal/modalInfos'
-import { Router } from "next/router";
+import Modal from '../../components/Modal/modal'
+import InfoModal from '../../components/Modal/modalInfos'
+import styles from './alunos.module.scss'
 
 
 export default function Alunos(){
@@ -61,7 +61,7 @@ export default function Alunos(){
             <Head>
                 <title>Alunos</title>
             </Head>
-            <h1>Alunos</h1>
+            <div className={styles.conteiner}>
             {alunosValidos === 0 ? 
                 <div>
                     <p>Não constam alunos cadastrados</p>
@@ -115,6 +115,7 @@ export default function Alunos(){
                     close={handleInfos}
                     materias={materiasValidas} />
                 )}
+            </div>
             
         </>
     )

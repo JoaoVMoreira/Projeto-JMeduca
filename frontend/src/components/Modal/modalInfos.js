@@ -2,7 +2,7 @@ import { BiEdit } from "react-icons/bi";
 import { useState } from "react";
 import AtualizaMateria from './EditMateriaModal'
 import { IoMdArrowRoundBack } from "react-icons/io";
-import base from "../../axios/config";
+import base from "../axios/config";
 import { GrAddCircle } from "react-icons/gr"; 
 import AddModal from './AddModal'
 

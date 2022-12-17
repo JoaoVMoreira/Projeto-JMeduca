@@ -1,0 +1,41 @@
+.conteiner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    img{
+        width: 300px;
+        height: 150px;
+        margin-left: -10px;
+    }
+    h1{
+        color: white;
+        font-size: 26px;
+        margin-top: 10px;
+        margin-bottom: 50px;
+    }
+    button{
+        background-color: #12161E;
+        border: 1px solid white;
+        width: 300px;
+        color: white;
+        height: 40px;
+    }
+    button:hover{
+        background-color: #292e33;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    svg{
+        margin-top: 20px;
+        font-size: 20px;
+        color: white;
+    }
+    a{
+        display: flex;
+        justify-content: center;
+        color: white;
+    }
+    
+}

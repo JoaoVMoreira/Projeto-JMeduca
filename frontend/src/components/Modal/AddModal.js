@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import base from "../../axios/config";
+import base from "../axios/config";
 
 
 export default function AddModal({conteudo, close}){

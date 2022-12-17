@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import base from "../axios/config";
+import base from "../components/axios/config";
 
 
 export const ContextsAPI = createContext({})
@@ -9,6 +9,7 @@ export const ContextProvider = ({ children }) => {
     const [materias, setMaterias] = useState([])
     const [alunosValidos, setAlunosValidos] = useState([])
     const [materiasValidas, setMateriasValidas] = useState([])
+    const [turmas, setTurmas] = useState([])
     
 
     async function getAlunos(){
@@ -43,6 +44,11 @@ export const ContextProvider = ({ children }) => {
         setMateriasValidas(materiasValidas)
     }
 
+    async function getTurmas(){
+        const turmass = await base.get('/turmas')
+        setTurmas(turmass.data.turma)
+    }
+
     
 
 
@@ -51,7 +57,8 @@ export const ContextProvider = ({ children }) => {
             getAlunos, alunos, 
             getMaterias, materias, 
             ValidaAlunos, alunosValidos, 
-            ValidaMaterias, materiasValidas }}>{children}</ContextsAPI.Provider>
+            ValidaMaterias, materiasValidas,
+            getTurmas, turmas }}>{children}</ContextsAPI.Provider>
     )
 }
 

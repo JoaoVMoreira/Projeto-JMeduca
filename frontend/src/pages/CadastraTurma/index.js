@@ -1,7 +1,10 @@
 import Head from "next/head"
 import Link from "next/link"
 import { useState } from "react"
-import base from "../axios/config"
+import Image from "next/image"
+import base from "../../components/axios/config"
+import style from './turma.module.scss'
+import logoImg from '../../medias/logo-branco.png'
 
 export default function CadastraTurma(){
     const [turma, setTurma] = useState('')
@@ -30,8 +33,9 @@ export default function CadastraTurma(){
             <Head>
                 <title>Cadastro de turmas</title>
             </Head>
-            <div>
-                <h1>Cadastre uma turma</h1>
+            <div className={style.conteiner}>
+                <Image src={logoImg} />
+                <h1>Cadastre uma turma:</h1>
 
                 <input placeholder="Numero da turma" value={turma} onChange={(e)=> setTurma(e.target.value)}/>
                 <input placeholder="Serie" value={serie} onChange={(e) => setSerie(e.target.value)} />

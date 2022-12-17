@@ -1,0 +1,31 @@
+.conteiner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    table{
+        border: 1px solid white;
+        border-right: none;
+        height: 40px;
+        width: 1150px;
+        color: white;
+        
+    }
+    td{
+        border-right: 1px solid white;
+        text-align: center;
+    }
+
+    button{
+        background-color: #12161E;
+        color: white;
+        border: 0;
+        font-size: 25px;
+    }
+    
+}
+
+.semAluno{
+
+}

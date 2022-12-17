@@ -1,9 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
 import Router from "next/router";
-import {useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { GrAddCircle } from "react-icons/gr"; 
-import base from '../axios/config'
+import base from '../components/axios/config'
+import style from '../styles/home.module.scss'
+import Image from "next/image";
+import logoImg from '../medias/logo-branco.png'
 
 
 export default function Home({ turm }) {
@@ -31,38 +34,34 @@ export default function Home({ turm }) {
       <Head>
         <title>Selecione uma turma</title>
       </Head>
-      <div>
-        <h1>Selecione uma turma</h1>
-      </div>
-      <div className="listaTurmas">
-        <table>
-          <tbody>
-            <tr>
-            {turmas.map((value) => {
-              async function handleSelectTurma() {
-                const setLocalTurma = localStorage.setItem('Turma logada', JSON.stringify(value.turma))
-                const localTurma = localStorage.getItem('Turma logada')
-                let cont = 0
-                {alunos.map(item => {
-                  if(parseInt(localTurma) === item.aluno_turma){
-                    cont += 1
-                  }
-                })}
-                const alunosValidos = localStorage.setItem('Alunos Validos', JSON.stringify(cont))
-                Router.push('/alunos')
-              }
-              return (
-                <td key={value.id}>
-                  <button onClick={handleSelectTurma}>Turma {value.turma}</button>
-                </td>
-              )
-            })}
-            </tr>
-          </tbody>
-        </table>
-        <Link href="/cadastraTurma"><GrAddCircle/></Link>
-      </div>
-
+      <div className={style.conteiner}>
+        <Image src={logoImg}/>
+        
+        <h1 >Selecione uma turma:</h1>
+      
+        <div >
+              {turmas.map((value) => {
+                async function handleSelectTurma() {
+                  const setLocalTurma = localStorage.setItem('Turma logada', JSON.stringify(value.turma))
+                  const localTurma = localStorage.getItem('Turma logada')
+                  let cont = 0
+                  {alunos.map(item => {
+                    if(parseInt(localTurma) === item.aluno_turma){
+                      cont += 1
+                    }
+                  })}
+                  const alunosValidos = localStorage.setItem('Alunos Validos', JSON.stringify(cont))
+                  Router.push('/Alunos')
+                }
+                return (
+                  <div className="buttonTurma" key={value.id}>
+                    <button  onClick={handleSelectTurma}>Turma {value.turma}</button>
+                  </div>
+                )
+              })}
+          <Link className={style.listaTurmas} href="/CadastraTurma"><GrAddCircle/></Link>
+        </div>
+      </div>      
     </>
   )
 }
