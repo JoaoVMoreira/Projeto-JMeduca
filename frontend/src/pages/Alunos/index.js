@@ -7,6 +7,7 @@ import { BiEdit } from "react-icons/bi";
 import Modal from '../../components/Modal/modal'
 import InfoModal from '../../components/Modal/modalInfos'
 import styles from './alunos.module.scss'
+import Header from "../../components/Header";
 
 
 export default function Alunos(){
@@ -61,9 +62,10 @@ export default function Alunos(){
             <Head>
                 <title>Alunos</title>
             </Head>
+            <Header/>
             <div className={styles.conteiner}>
             {alunosValidos === 0 ? 
-                <div>
+                <div className={styles.semAluno}>
                     <p>Não constam alunos cadastrados</p>
                     <Link href={'/CadastraAluno'}>Cadastrar Aluno</Link>
                 </div>
@@ -103,7 +105,7 @@ export default function Alunos(){
                 </div>
             }
             
-                <Link href={"/"}>Voltar</Link>
+                <Link href={"/CadastraAluno"}>Cadastrar Aluno</Link>
                 {showEditModal && (
                     <Modal
                     conteudo={detail}

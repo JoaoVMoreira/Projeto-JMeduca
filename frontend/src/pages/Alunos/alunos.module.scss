@@ -3,18 +3,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 90vh;
+    min-height: 89vh;
+    margin: auto;
     table{
-        border: 1px solid white;
-        border-right: none;
-        height: 40px;
-        width: 1150px;
+        width: 90vw;
         color: white;
-        
+        border-collapse: collapse;
+        table-layout: fixed;
+        height: 45px;
     }
     td{
-        border-right: 1px solid white;
+        border: 1px solid white;
         text-align: center;
+        vertical-align: auto;
+        
     }
 
     button{
@@ -22,6 +24,21 @@
         color: white;
         border: 0;
         font-size: 25px;
+    }
+
+    a{
+        margin-top: 30px;
+        text-decoration: none;
+        background-color: white;
+        color: #12161E;
+        font-weight: 900;
+        border-radius: 8px;
+        padding: 12px 80px;
+    }
+
+    a:hover{
+        background-color: rgb(182, 180, 180);
+        transition: 0.2s;
     }
     
 }

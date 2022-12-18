@@ -1,6 +1,9 @@
 import { useContext, useEffect, useState } from "react"
 import { ContextsAPI } from '../../contexts/contexts'
 import base from "../../components/axios/config"
+import styles from './cadastro.module.scss'
+import Head from "next/head"
+import Header from '../../components/Header'
 
 export default function CadastraAluno(){
     const [nome, setNome] = useState('')
@@ -31,22 +34,29 @@ export default function CadastraAluno(){
         getTurmas()
     }, [])
     return(
-        <div>
-            <h1>Cadastro de alunos</h1>
-            <input placeholder="Nome" value={nome} onChange={(e)=> setNome(e.target.value)}/>
-            <input placeholder="Idade" value={idade} onChange={(e) => setIdade(e.target.value)} />
-            <select value={[turma]} onChange={(e) => { setTurma(e.target.value)}}>
-                <option >Turma // Serie</option>
-                {turmas.map( item => {
-                    
-                    return(
-                        // eslint-disable-next-line react/jsx-no-comment-textnodes
-                        <option key={item.id} value={item.turma}>{item.turma} // {item.serie}</option>
-                    )
-                })}
+        <>
+            <Head>
+                <title>Cadastro de alunos</title>
+            </Head>
+            <Header/>
+            <div className={styles.conteiner}>
                 
-            </select>
-            <button onClick={()=>{AddAluno(turmas)}}>Cadastrar aluno</button>
-        </div>
+                <h1>Cadastro de alunos:</h1>
+                <input placeholder="Nome" value={nome} onChange={(e)=> setNome(e.target.value)}/>
+                <input placeholder="Idade" value={idade} onChange={(e) => setIdade(e.target.value)} />
+                <select value={[turma]} onChange={(e) => { setTurma(e.target.value)}}>
+                    <option >Turma // Serie</option>
+                    {turmas.map( item => {
+                        
+                        return(
+                            // eslint-disable-next-line react/jsx-no-comment-textnodes
+                            <option key={item.id} value={item.turma}>{item.turma} // {item.serie}</option>
+                        )
+                    })}
+                    
+                </select>
+                <button onClick={()=>{AddAluno(turmas)}}>Cadastrar aluno</button>
+            </div>
+        </>
     )
 }

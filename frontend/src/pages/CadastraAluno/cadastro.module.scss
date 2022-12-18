@@ -1,0 +1,48 @@
+.conteiner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 78vh;
+
+    h1{
+        color: white;
+        font-size: 24px;
+        margin-top: 10px;
+        margin-bottom: 50px;
+    }
+
+    input {
+        background-color: #12161E;
+        border: 1px solid white;
+        width: 400px;
+        height: 50px;
+        color: white;
+        padding-left: 10px;
+    }
+
+    input::placeholder {
+        color: white;
+        display: flex;
+    }
+
+    select{
+        background-color: #12161E;
+        border: 1px solid white;
+        width: 413px;
+        height: 50px;
+        color: white;
+        padding-right: 20px;
+    }
+
+    button{
+        margin-top: 40px;
+        background-color: white;
+        color: #12161E;
+        border: none;
+        border-radius: 8px;
+        width: 200px;
+        height: 45px;
+        font-size: 15px;
+    }
+}
