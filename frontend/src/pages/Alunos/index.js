@@ -4,10 +4,10 @@ import {useEffect, useState } from "react";
 import base from "../../components/axios/config";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { BiEdit } from "react-icons/bi";
-import Modal from '../../components/Modal/modal'
-import InfoModal from '../../components/Modal/modalInfos'
+import InfoModal from '../../components/Modal/modelInfos'
 import styles from './alunos.module.scss'
 import Header from "../../components/Header";
+import ModalEdit from "../../components/Modal/modal";
 
 
 export default function Alunos(){
@@ -66,8 +66,7 @@ export default function Alunos(){
             <div className={styles.conteiner}>
             {alunosValidos === 0 ? 
                 <div className={styles.semAluno}>
-                    <p>Não constam alunos cadastrados</p>
-                    <Link href={'/CadastraAluno'}>Cadastrar Aluno</Link>
+                    <p>Não constam alunos cadastrados...</p>
                 </div>
              : 
                 <div>
@@ -107,12 +106,14 @@ export default function Alunos(){
             
                 <Link href={"/CadastraAluno"}>Cadastrar Aluno</Link>
                 {showEditModal && (
-                    <Modal
+                    <ModalEdit
                     conteudo={detail}
-                    close={handleAtualiza}/>
+                    close={handleAtualiza}
+                    isOpen={showEditModal}/>
                 )}
                 {showInfosModal && (
                     <InfoModal
+                    isOpen={showInfosModal}
                     conteudo={detail}
                     close={handleInfos}
                     materias={materiasValidas} />

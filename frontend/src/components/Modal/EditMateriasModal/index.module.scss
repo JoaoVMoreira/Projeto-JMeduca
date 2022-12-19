@@ -1,0 +1,86 @@
+.modal{
+    width: 100vw;
+    height: 100vw;
+    background-color: #1c222ebe;
+    z-index: 10;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteiner{
+    width: 35vw;
+    height: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+    background-color: #EBECF0;
+    border-radius: 8px;
+}
+
+.header{
+    width: 35vw;
+    height: 2vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    margin-top: 10px;
+    margin-right: 20px;
+    button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    button:hover{
+        background-color: #12161E;
+        padding: 3px;
+        border-radius: 8px;
+        color: white;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+}
+
+.content{
+    height: 12vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    input, p{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #EBECF0;
+        border: 1.9px solid #12161E;
+        font-weight: 700;
+        width: 8vw;
+        height: 3vw;
+    }
+    input::placeholder{
+        display: flex;
+        text-align: center;
+        color: #1c222ebe;
+    }
+}
+
+.handleButton{
+    button{
+        background-color: #12161E;
+        color: white;
+        width: 230px;
+        height: 45px;
+        border-radius: 5px;
+        font-size: 20px;
+    }
+    button:hover{
+        cursor: pointer;
+        background-color: #EBECF0;
+        border: 2px solid #12161E;
+        color: #12161E;
+        transition: 0.2s;
+    }
+}
