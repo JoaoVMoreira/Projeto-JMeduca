@@ -1,11 +1,14 @@
-import {useState} from 'react'
+import {useContext, useState} from 'react'
 import base from '../../axios/config'
 import Modal from 'react-modal'
 import styles from './index.module.scss'
+import { ContextsAPI } from '../../../contexts/contexts'
 
 export default function ModalEdit({isOpen, conteudo, close}){
     const [nome, setNome] = useState('')
     const [idade, setIdade] = useState('')
+
+    const{getAlunos} = useContext(ContextsAPI)
 
     async function handleAtualiza(){
         try{
@@ -14,12 +17,15 @@ export default function ModalEdit({isOpen, conteudo, close}){
                 where:{
                     id: conteudo.id
                 },
-                id: conteuxdo.id,
+                id: conteudo.id,
                 nome: nome,
                 idade: parseInt(idade)
             })
             setNome('')
             setIdade('')
+            alert('Aluno atualizado com sucesso!')
+            getAlunos()
+            close()
         }catch(error){
             alert(error)
         }

@@ -1,5 +1,5 @@
 import { BiEdit } from "react-icons/bi";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AtualizaMateria from '../EditMateriasModal'
 import { IoMdArrowRoundBack } from "react-icons/io";
 import base from "../../axios/config";
@@ -7,14 +7,13 @@ import { GrAddCircle } from "react-icons/gr";
 import AddModal from '../AddModal/index'
 import styles from './index.module.scss'
 import Modal from 'react-modal'
+import { ContextsAPI } from "../../../contexts/contexts";
 
 export default function ModalInfos({ isOpen, conteudo, close, materias }){
 
     const [showModal, setShowModal] = useState(false)
     const [detail, setDetail] = useState([])
     const [addModal, setAddModal] = useState(false)
-
-    
 
     async function handleModal(value){
         setShowModal(!showModal)
@@ -27,10 +26,11 @@ export default function ModalInfos({ isOpen, conteudo, close, materias }){
                     id: conteudo.id
                 }
             })
+        conteudo()
         alert('Aluno deletado')
     }
 
-    async function handleDelete(item){
+    async function handleDelete(item){ 
         if (item.length > 0){
             {item.map(async (value) => {
                 const res = await base.delete('/materias/remove', {
@@ -59,7 +59,13 @@ export default function ModalInfos({ isOpen, conteudo, close, materias }){
                 {materias.length == 0 ? 
                 <div className={styles.semMateria}>
                     <p>Não há materias cadastradas...</p>
-                        <button onClick={()=>{handleAdd(conteudo)}}>Cadastrar materias</button>
+                        <button onClick={() => { handleAdd(conteudo) }}>Cadastrar materias</button>
+                            {addModal && (
+                                <AddModal
+                                    conteudo={detail}
+                                    close={handleAdd}
+                                    isOpen={showModal}/>
+                            )}
                 </div> : 
 
                 <div>
@@ -114,7 +120,8 @@ export default function ModalInfos({ isOpen, conteudo, close, materias }){
                                 <AddModal
                                 conteudo={detail}
                                 close={handleAdd}
-                                isOpen={showModal}/>
+                                isOpen={showModal}
+                                closeAll={close}/>
                             )}
 
                         </div>

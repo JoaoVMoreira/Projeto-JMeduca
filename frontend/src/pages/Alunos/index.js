@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import {useEffect, useState } from "react";
+import {useContext, useEffect, useState } from "react";
 import base from "../../components/axios/config";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { BiEdit } from "react-icons/bi";
@@ -8,10 +8,10 @@ import InfoModal from '../../components/Modal/modelInfos'
 import styles from './alunos.module.scss'
 import Header from "../../components/Header";
 import ModalEdit from "../../components/Modal/modal";
+import {ContextsAPI} from '../../contexts/contexts.js'
 
 
 export default function Alunos(){
-    const [alunos, setAlunos] = useState([])
     const [turmaNum, setTurmaNum] = useState('')
     const [alunosValidos, setAlunosValidos] = useState(0)
     const [showEditModal, setShowEditModal] = useState(false)
@@ -19,14 +19,17 @@ export default function Alunos(){
     const [detail, setDetail] = useState()
     const [materias, setMaterias] = useState([])
     const [materiasValidas, setMateriasValidas] = useState([])
+    const [loading, setLoading] = useState(true)
+    
+    const { getAlunos, alunos,  } = useContext(ContextsAPI)
     
     
     async function getDados(){
         setTurmaNum(localStorage.getItem('Turma logada'))
-        const data = await base.get('/alunos')
-        setAlunos(data.data.alunos)
-        const sla = await localStorage.getItem('Alunos Validos')
-        setAlunosValidos(parseInt(sla))
+        getAlunos()
+        const numeroAlunosValidos = await localStorage.getItem('Alunos Validos')
+        setAlunosValidos(parseInt(numeroAlunosValidos))
+        
     }
 
     function handleAtualiza(item) {
@@ -34,11 +37,12 @@ export default function Alunos(){
         setDetail(item)
     }
 
+
     async function handleInfos(item){
         
         let data = []
         const dados = await base.get('/materias')
-        setMaterias(dados.data.materias)
+        await setMaterias(dados.data.materias)
         {
             materias.map(value => {
                 if (value.aluno_id == item.id) {
@@ -46,7 +50,7 @@ export default function Alunos(){
                 }
             })
         }
-        setMateriasValidas(data)
+        await setMateriasValidas(data)
         setShowInfosModal(!showInfosModal)
         setDetail(item)
     }
@@ -55,6 +59,7 @@ export default function Alunos(){
 
     useEffect(()=> {
         getDados()
+        setLoading(false)
     }, [])
 
     return(
@@ -64,6 +69,7 @@ export default function Alunos(){
             </Head>
             <Header/>
             <div className={styles.conteiner}>
+            {loading && (<div className={styles.loading}>Carregando</div>)}
             {alunosValidos === 0 ? 
                 <div className={styles.semAluno}>
                     <p>Não constam alunos cadastrados...</p>
@@ -101,9 +107,9 @@ export default function Alunos(){
                         }
                     })}
                     
+                
                 </div>
             }
-            
                 <Link href={"/CadastraAluno"}>Cadastrar Aluno</Link>
                 {showEditModal && (
                     <ModalEdit

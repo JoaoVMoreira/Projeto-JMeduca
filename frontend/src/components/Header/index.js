@@ -3,12 +3,20 @@ import logoImg from '../../medias/logo-branco.png'
 import styles from './header.module.scss'
 import { IoMdArrowRoundBack } from "react-icons/io";
 import Router from 'next/router';
+import { useEffect, useState } from 'react';
 
 export default function Header(){
+
+    const[turma, setTurma] = useState('')
     function handleBack(){
         Router.push('/')
     }
-    const turma = localStorage.getItem('Turma logada')
+
+
+    useEffect(()=>{
+        setTurma(localStorage.getItem('Turma logada'))
+    },[])
+
     return(
         <div className={styles.conteiner}>
             <Image src={logoImg}/>

@@ -33,12 +33,12 @@ export const ContextProvider = ({ children }) => {
         setAlunosValidos(alunosValidos)
     }
 
-    async function ValidaMaterias(alunoId){
-        const materiasValidas = []
+    async function ValidaMaterias(alunoId, materiasTot){
+        const ValidaMateria = []
         {
-            materias.map(value => {
+            materiasTot.map(value => {
                 if (value.aluno_id == alunoId) {
-                    materiasValidas.push(value)
+                    ValidaMateria.push(value)
                 }
             })}
         setMateriasValidas(materiasValidas)
@@ -57,7 +57,7 @@ export const ContextProvider = ({ children }) => {
             getAlunos, alunos, 
             getMaterias, materias, 
             ValidaAlunos, alunosValidos, 
-            ValidaMaterias, materiasValidas,
+            ValidaMaterias, materiasValidas, setMateriasValidas,
             getTurmas, turmas }}>{children}</ContextsAPI.Provider>
     )
 }

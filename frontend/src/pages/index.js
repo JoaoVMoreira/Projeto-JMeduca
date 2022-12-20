@@ -12,6 +12,7 @@ import logoImg from '../medias/logo-branco.png'
 export default function Home({ turm }) {
   const [turmas, setTurmas] = useState(turm || [])
   const [alunos, setAlunos] = useState([])
+  const [loading, setLoading] = useState(true)
 
 
   const getDados = async()=>{
@@ -20,9 +21,11 @@ export default function Home({ turm }) {
       const dataAlunos = await base.get('/alunos')
       setTurmas(dataTurmas.data.turma)
       setAlunos(dataAlunos.data.alunos)
+      
     }catch(error){
       console.log(error)
     }
+    setLoading(false)
   }
 
   useEffect(()=>{
@@ -59,6 +62,7 @@ export default function Home({ turm }) {
                   </div>
                 )
               })}
+          {loading && (<div className={style.loading}>Carregando...</div>)}
           <Link className={style.listaTurmas} href="/CadastraTurma"><GrAddCircle/></Link>
         </div>
       </div>      

@@ -4,6 +4,7 @@ import base from "../../components/axios/config"
 import styles from './cadastro.module.scss'
 import Head from "next/head"
 import Header from '../../components/Header'
+import Router from "next/router"
 
 export default function CadastraAluno(){
     const [nome, setNome] = useState('')
@@ -11,9 +12,14 @@ export default function CadastraAluno(){
     const [turma, setTurma] = useState('')
     const [serie, setSerie] = useState('')
     
-    const { getTurmas, turmas } = useContext(ContextsAPI)
+    const { getTurmas, turmas, getAlunos } = useContext(ContextsAPI)
     const teste = []
     async function AddAluno(turmas){
+
+        if(nome === '' || idade === '' || turma === ''){
+            alert('Favor preencher todos os campos ')
+            return
+        }
         turmas.map(value=> {
             if (turma == value.turma){
                 teste.push(value.serie)
@@ -27,6 +33,8 @@ export default function CadastraAluno(){
                 aluno_serie: teste[0]
         })
         alert('Aluno cadastrado com sucesso!')
+        getAlunos()
+        Router.push('/Alunos')
     }   
     
 

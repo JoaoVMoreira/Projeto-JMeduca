@@ -4,12 +4,17 @@ import base from "../../axios/config";
 import styles from './index.module.scss'
 
 
-export default function AddModal({conteudo, close}){
+export default function AddModal({conteudo, close, closeAll}){
     const [materia, setMateria] = useState('')
     const [n1, setn1] = useState('')
     const [n2, setn2] = useState('')
 
+
     async function CadastraMateria(){
+        if(materia === '' || n1 === '' || n2 === ''){
+            alert('Favor preencher todos os campos!')
+            return
+        }
         const res = base.post('/materias', {
                 materia: materia,
                 aluno_id: conteudo.id,

@@ -5,6 +5,7 @@ import Image from "next/image"
 import base from "../../components/axios/config"
 import style from './turma.module.scss'
 import logoImg from '../../medias/logo-branco.png'
+import Router from "next/router"
 
 export default function CadastraTurma(){
     const [turma, setTurma] = useState('')
@@ -22,6 +23,7 @@ export default function CadastraTurma(){
             alert('Turma cadastrada com sucesso!!')
             setTurma('')
             setSerie('')
+            Router.push('/')
         }catch(error){
             console.log(error)
         }
