@@ -2,20 +2,20 @@ import { useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import base from "../../axios/config";
 import styles from './index.module.scss'
+//MODAL DE CADASTRO DE MATERIAS
 
-
-export default function AddModal({conteudo, close, closeAll}){
+export default function AddModal({conteudo, close}){
     const [materia, setMateria] = useState('')
     const [n1, setn1] = useState('')
     const [n2, setn2] = useState('')
 
 
-    async function CadastraMateria(){
-        if(materia === '' || n1 === '' || n2 === ''){
+    async function CadastraMateria(){ 
+        if(materia === '' || n1 === '' || n2 === ''){ //Verificando se todos os dados foram informados
             alert('Favor preencher todos os campos!')
             return
         }
-        const res = base.post('/materias', {
+        const res = base.post('/materias', { //Realizando o cadastro da materia
                 materia: materia,
                 aluno_id: conteudo.id,
                 n1: parseFloat(n1),

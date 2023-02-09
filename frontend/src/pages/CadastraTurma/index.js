@@ -11,20 +11,20 @@ export default function CadastraTurma(){
     const [turma, setTurma] = useState('')
     const [serie, setSerie] = useState('')
 
-    async function handleCadastraTurma(){
+    async function handleCadastraTurma(){//Informando erro caso algum dado não seja informado
         if(!turma || !serie){
             alert('Favor informar Turma e Serie para seguir com o cadastro.')
         }
         try{
-            const res = await base.post('/turmas', {
+            const res = await base.post('/turmas', { //Efetuando cadastro da turma
                 turma: parseInt(turma),
                 serie: serie
             })
             alert('Turma cadastrada com sucesso!!')
             setTurma('')
             setSerie('')
-            Router.push('/')
-        }catch(error){
+            Router.push('/') //Direcionando para a pafina inicial
+        }catch(error){ //Tratando erro
             console.log(error)
         }
         

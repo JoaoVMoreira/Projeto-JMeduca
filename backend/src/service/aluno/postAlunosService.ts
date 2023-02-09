@@ -7,6 +7,7 @@ interface ipostAlunosService{
     aluno_serie: string, 
 }
 
+//Função para cadastrar alunos
 class postAlunosService{
     async execute({ nome, idade, aluno_turma, aluno_serie}: ipostAlunosService){
 
@@ -16,6 +17,7 @@ class postAlunosService{
             }
         })
 
+        //Verificando se aluno ja existe
         if(existe){
             throw new Error('Aluno já cadastrado!')
         }

@@ -7,6 +7,8 @@ interface iputMateriasService {
     n2: number
 }
 
+
+//Função para atualizar materias
 class putMateriasService{
     async execute({ id, materia, n1, n2 }: iputMateriasService){
         const materias = await prismaClient.materias.update({

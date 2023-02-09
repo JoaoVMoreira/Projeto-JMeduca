@@ -2,9 +2,9 @@ import { createContext, useState } from "react";
 import base from "../components/axios/config";
 
 
-export const ContextsAPI = createContext({})
+export const ContextsAPI = createContext({}) //Criando context
 
-export const ContextProvider = ({ children }) => {
+export const ContextProvider = ({ children }) => { //Acionando context
     const [alunos, setAlunos] = useState([])
     const [materias, setMaterias] = useState([])
     const [alunosValidos, setAlunosValidos] = useState([])
@@ -12,17 +12,17 @@ export const ContextProvider = ({ children }) => {
     const [turmas, setTurmas] = useState([])
     
 
-    async function getAlunos(){
+    async function getAlunos(){ //Capturando dados dos alunos
         const alunos = await base.get('/alunos')
         setAlunos(alunos.data.alunos)
     }
 
-    async function getMaterias(){
+    async function getMaterias(){ //Capturando dados das materias
         const materias = await base.get('/materias')
         setMaterias(materias.data.materias)
     }
 
-    async function ValidaAlunos(){
+    async function ValidaAlunos(){ //Validando os alunos
         const alunosValidos = []
         const turmaAtual = await localStorage.getItem('Turma logada')
         {alunos.map(item => {
@@ -33,7 +33,7 @@ export const ContextProvider = ({ children }) => {
         setAlunosValidos(alunosValidos)
     }
 
-    async function ValidaMaterias(alunoId, materiasTot){
+    async function ValidaMaterias(alunoId, materiasTot){ //Validando as materias
         const ValidaMateria = []
         {
             materiasTot.map(value => {
@@ -44,7 +44,7 @@ export const ContextProvider = ({ children }) => {
         setMateriasValidas(materiasValidas)
     }
 
-    async function getTurmas(){
+    async function getTurmas(){ //Capturando dados das turmas
         const turmass = await base.get('/turmas')
         setTurmas(turmass.data.turma)
     }
@@ -58,7 +58,7 @@ export const ContextProvider = ({ children }) => {
             getMaterias, materias, 
             ValidaAlunos, alunosValidos, 
             ValidaMaterias, materiasValidas, setMateriasValidas,
-            getTurmas, turmas }}>{children}</ContextsAPI.Provider>
+            getTurmas, turmas }}>{children}</ContextsAPI.Provider> //Informando funções e dados para ficarem salvos no useContext
     )
 }
 

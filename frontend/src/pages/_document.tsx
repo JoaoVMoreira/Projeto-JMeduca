@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
-
+//Informando os titulos das paginas
 function Document(){
     return(
         <Html>

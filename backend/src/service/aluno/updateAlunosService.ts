@@ -6,6 +6,8 @@ interface iupdateAlunosService{
     idade: number
 }
 
+
+//Função para atualizar dados de alunos
 class updateAlunosService{
     async execute({id, nome, idade}: iupdateAlunosService){
         const alunos = await prismaClient.aluno.update({

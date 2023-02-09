@@ -5,6 +5,8 @@ interface iDeleteMateriasService{
     id: string
 }
 
+
+//Função para deletar materias
 class deleteMateriasService{
     async execute({ id }: iDeleteMateriasService){
         const materia = await prismaClient.materias.delete({

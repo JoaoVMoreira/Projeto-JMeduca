@@ -7,6 +7,7 @@ interface ipostMateriasService {
     n2: number
 }
 
+//Função para cadastrar materias
 class postMateriasService{
     async execute({materia, aluno_id, n1, n2}: ipostMateriasService){
 
@@ -22,10 +23,12 @@ class postMateriasService{
             }
         })
 
+        //Verificando se a materia já esta vinculada ao aluno
         if(existeMateria && existeAluno){
             throw new Error('Materia já vinculada ao aluno informado!')
         }
 
+        //Verificando se todos os dados foram informados. 
         if(!materia || !aluno_id || !n1 || !n2){
             throw new Error('Favor informar todos os dados!')
         }

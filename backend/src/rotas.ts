@@ -10,6 +10,7 @@ import { putMateriasController } from "./controller/materia/putMateriasControlle
 import { getTurmasController } from "./controller/turma/getTurmasController";
 import { postTurmaController } from "./controller/turma/postTurmaController";
 
+//Definindo a função rota
 const rota = Router()
 
 //TURMAS

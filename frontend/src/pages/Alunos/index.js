@@ -21,30 +21,30 @@ export default function Alunos(){
     const [materiasValidas, setMateriasValidas] = useState([])
     const [loading, setLoading] = useState(true)
     
-    const { getAlunos, alunos,  } = useContext(ContextsAPI)
+    const { getAlunos, alunos,  } = useContext(ContextsAPI) //Acionando dados do useContext
     
     
-    async function getDados(){
-        setTurmaNum(localStorage.getItem('Turma logada'))
+    async function getDados(){ //Função para capturar dados 
+        setTurmaNum(localStorage.getItem('Turma logada')) //Vinculando a turma selecionada no localStorage
         getAlunos()
-        const numeroAlunosValidos = await localStorage.getItem('Alunos Validos')
-        setAlunosValidos(parseInt(numeroAlunosValidos))
+        const numeroAlunosValidos = await localStorage.getItem('Alunos Validos') 
+        setAlunosValidos(parseInt(numeroAlunosValidos)) //Contando quantos alunos temos na turma selecionada
         
     }
 
-    function handleAtualiza(item) {
+    function handleAtualiza(item) { //Chamando modal de atualizar dados
         setShowEditModal(!showEditModal)
         setDetail(item)
     }
 
 
-    async function handleInfos(item){
+    async function handleInfos(item) {//Chamando modal de informações
         
         let data = []
         const dados = await base.get('/materias')
         await setMaterias(dados.data.materias)
         {
-            materias.map(value => {
+            materias.map(value => { //Setando materias
                 if (value.aluno_id == item.id) {
                     data.push(value)
                 }
@@ -58,7 +58,7 @@ export default function Alunos(){
     const totAlunos = []    
 
     useEffect(()=> {
-        getDados()
+        getDados() //Atualizando dados
         setLoading(false)
     }, [])
 
@@ -69,8 +69,8 @@ export default function Alunos(){
             </Head>
             <Header/>
             <div className={styles.conteiner}>
-            {loading && (<div className={styles.loading}>Carregando</div>)}
-            {alunosValidos === 0 ? 
+            {loading && (<div className={styles.loading}>Carregando</div>)} {/*Renderização quando o Loanding for True*/}
+            {alunosValidos === 0 ?   /*Renderização caso não tenha alunos na turma*/
                 <div className={styles.semAluno}>
                     <p>Não constam alunos cadastrados...</p>
                 </div>
@@ -111,13 +111,14 @@ export default function Alunos(){
                 </div>
             }
                 <Link href={"/CadastraAluno"}>Cadastrar Aluno</Link>
-                {showEditModal && (
+                {showEditModal && ( //Modal Edição
                     <ModalEdit
-                    conteudo={detail}
-                    close={handleAtualiza}
-                    isOpen={showEditModal}/>
+                    conteudo={detail} //Dados enviados ao modal
+                    close={handleAtualiza} //Função que fecha o modal
+                    isOpen={showEditModal} //Informando se o modal está aberto
+                    />
                 )}
-                {showInfosModal && (
+                {showInfosModal && ( //Modal informações 
                     <InfoModal
                     isOpen={showInfosModal}
                     conteudo={detail}

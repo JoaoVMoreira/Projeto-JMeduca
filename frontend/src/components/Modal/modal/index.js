@@ -7,13 +7,13 @@ import { ContextsAPI } from '../../../contexts/contexts'
 export default function ModalEdit({isOpen, conteudo, close}){
     const [nome, setNome] = useState('')
     const [idade, setIdade] = useState('')
-
+    //MODAL DE ATUALIZAÇÃO DE DADOS
     const{getAlunos} = useContext(ContextsAPI)
 
     async function handleAtualiza(){
         try{
 
-            const res = await base.put("/alunos/update", {
+            const res = await base.put("/alunos/update", {//Função de atualização de dados
                 where:{
                     id: conteudo.id
                 },
@@ -24,7 +24,7 @@ export default function ModalEdit({isOpen, conteudo, close}){
             setNome('')
             setIdade('')
             alert('Aluno atualizado com sucesso!')
-            getAlunos()
+            getAlunos() 
             close()
         }catch(error){
             alert(error)

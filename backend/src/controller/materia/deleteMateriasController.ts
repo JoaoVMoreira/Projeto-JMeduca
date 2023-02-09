@@ -3,7 +3,7 @@ import { deleteMateriasService } from '../../service/materia/deleteMateriasServi
 
 class deleteMateriasController{
     async handle(req: Request, res: Response){
-        const id = req.query.id as string
+        const id = req.query.id as string //Requisitando id do query
         const DeleteMateriasService = new deleteMateriasService() 
         const materias = await DeleteMateriasService.execute({id})
         return res.json(materias)

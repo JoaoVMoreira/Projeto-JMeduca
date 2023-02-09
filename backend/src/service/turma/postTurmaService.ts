@@ -4,7 +4,7 @@ interface ipostTurmaService{
     turma: number,
     serie: string
 }
-
+//Função para cadastrar turmas
 class postTurmaService{
     async execute({turma, serie}: ipostTurmaService){
         const existe = await prismaClient.turmas.findFirst({

@@ -10,32 +10,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Turmas{
+model Turmas{ //Tabela de turmas no banco de dados
   id String @id @default(uuid())
   turma Int @unique
   serie String @unique
 
   @@map("turmas")
-  aluno Aluno[]
-  @@unique([turma, serie])
+  aluno Aluno[] //Vinculando os alunos cadastrados a turmas
+  @@unique([turma, serie]) //Ligação de turmas com serie 
 }
 
-model Aluno{
+model Aluno{ //Tabela de alunos
   id String @id @default(uuid())
   nome String
   idade Int
   aluno_turma Int
   aluno_serie String
 
-  turma Turmas @relation(fields: [aluno_turma, aluno_serie], references: [turma, serie])
+  turma Turmas @relation(fields: [aluno_turma, aluno_serie], references: [turma, serie]) //Vinculando o aluno a uma turma e a uma serie
   @@map("aluno")
-  materias Materias[]
+  materias Materias[] //Vinculando materias a alunos
 }
 
-model Materias{
+model Materias{ //Tabela de materias
   id String @id @default(uuid())
   materia String
-  aluno Aluno @relation(fields: [aluno_id], references: [id])
+  aluno Aluno @relation(fields: [aluno_id], references: [id]) //Vinculando alunos nas materias
   aluno_id String
   n1 Float
   n2 Float

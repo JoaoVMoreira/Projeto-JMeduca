@@ -8,33 +8,32 @@ import style from '../styles/home.module.scss'
 import Image from "next/image";
 import logoImg from '../medias/logo-branco.png'
 
-
+//Pagina inicial 
 export default function Home({ turm }) {
   const [turmas, setTurmas] = useState(turm || [])
   const [alunos, setAlunos] = useState([])
   const [loading, setLoading] = useState(true)
 
-
   const getDados = async()=>{
     try{
-      const dataTurmas = await base.get('/turmas')
-      const dataAlunos = await base.get('/alunos')
-      setTurmas(dataTurmas.data.turma)
-      setAlunos(dataAlunos.data.alunos)
+      const dataTurmas = await base.get('/turmas') //Capturando dados da turma 
+      const dataAlunos = await base.get('/alunos') //Capturando dados dos alunos 
+      setTurmas(dataTurmas.data.turma) //Setando os dados da turma na useState
+      setAlunos(dataAlunos.data.alunos) //Setando os dados dos alunos na useState
       
-    }catch(error){
+    }catch(error){ //Tratando erro
       console.log(error)
     }
-    setLoading(false)
+    setLoading(false) //Setando a tela de Loading como false quando o componente termina de carregar 
   }
 
   useEffect(()=>{
-    getDados()
+    getDados()  //UseEffect para salvar os dados 
   }, [])
 
   return (
     <>
-      <Head>
+      <Head> {/*Definindo titulo*/}
         <title>Selecione uma turma</title>
       </Head>
       <div className={style.conteiner}>
@@ -43,26 +42,26 @@ export default function Home({ turm }) {
         <h1 >Selecione uma turma:</h1>
       
         <div >
-              {turmas.map((value) => {
+              {turmas.map((value) => {  //Listando todas as turmas cadastradas
                 async function handleSelectTurma() {
                   const setLocalTurma = localStorage.setItem('Turma logada', JSON.stringify(value.turma))
                   const localTurma = localStorage.getItem('Turma logada')
                   let cont = 0
-                  {alunos.map(item => {
+                  {alunos.map(item => {  //Verificando os alunos pertencentes a turma selecionada
                     if(parseInt(localTurma) === item.aluno_turma){
                       cont += 1
                     }
                   })}
-                  const alunosValidos = localStorage.setItem('Alunos Validos', JSON.stringify(cont))
+                  const alunosValidos = localStorage.setItem('Alunos Validos', JSON.stringify(cont)) /*Salvando os alunos vinculados a turma selecionada em localStorage  */
                   Router.push('/Alunos')
                 }
                 return (
                   <div className="buttonTurma" key={value.id}>
-                    <button  onClick={handleSelectTurma}>Turma {value.turma}</button>
+                    <button  onClick={handleSelectTurma}>Turma {value.turma}</button> {/*Botão para selecionar turmas*/}
                   </div>
                 )
               })}
-          {loading && (<div className={style.loading}>Carregando...</div>)}
+          {loading && (<div className={style.loading}>Carregando...</div>)} {/*Renderização caso o componente Loading seja true*/}
           <Link className={style.listaTurmas} href="/CadastraTurma"><GrAddCircle/></Link>
         </div>
       </div>      

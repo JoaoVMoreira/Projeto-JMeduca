@@ -1,23 +1,22 @@
 import Router from "next/router";
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { ContextsAPI } from "../../../contexts/contexts";
 import base from "../../axios/config"
 import styles from './index.module.scss'
 
 export default function AtualizaMateria({isOpen, conteudo, close}){
-
+    //MODAL DE EDIÇÃO DE MATERIAS
     const [nota1, setNota1] = useState('')
     const [nota2, setNota2] = useState('')
 
 
     async function handleAtualiza(){
-        if (nota1 === '' || nota2 === ''){
+        if (nota1 === '' || nota2 === ''){ //Verificando se as notas foram informadas
             alert('Favor informar nota 1 e nota 2!')
             return
         }
         try{
-            const res = await base.put('/materias/update', {
+            const res = await base.put('/materias/update', { //Atualizando dados informados
                 where: {
                     id: conteudo.id
                 },

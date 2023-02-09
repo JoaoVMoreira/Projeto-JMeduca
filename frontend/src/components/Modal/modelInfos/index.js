@@ -7,7 +7,6 @@ import { GrAddCircle } from "react-icons/gr";
 import AddModal from '../AddModal/index'
 import styles from './index.module.scss'
 import Modal from 'react-modal'
-import { ContextsAPI } from "../../../contexts/contexts";
 
 export default function ModalInfos({ isOpen, conteudo, close, materias }){
 
@@ -15,12 +14,12 @@ export default function ModalInfos({ isOpen, conteudo, close, materias }){
     const [detail, setDetail] = useState([])
     const [addModal, setAddModal] = useState(false)
 
-    async function handleModal(value){
+    async function handleModal(value){ //Modal de edição de dados
         setShowModal(!showModal)
         setDetail(value)
     }
 
-    async function deleteAluno(){
+    async function deleteAluno(){ //Função de deletar aluno acionada apos a verificacao
             const deleteAluno = await base.delete('/alunos/remove', {
                 params: {
                     id: conteudo.id
@@ -31,7 +30,7 @@ export default function ModalInfos({ isOpen, conteudo, close, materias }){
     }
 
     async function handleDelete(item){ 
-        if (item.length > 0){
+        if (item.length > 0){ //Capturando o id do aluno a ser deletado
             {item.map(async (value) => {
                 const res = await base.delete('/materias/remove', {
                     params: {
@@ -40,23 +39,23 @@ export default function ModalInfos({ isOpen, conteudo, close, materias }){
                 })
             })}
         }
-        deleteAluno()
+        deleteAluno() //Acionando a função de deleção do aluno
     }
 
-    async function handleAdd(item){
+    async function handleAdd(item){ //Modal de adicionar aluno
         setAddModal(!addModal)
         setDetail(item)
     }
 
     return(
         <Modal
-            isOpen={isOpen}
-            onRequestClose={close}
-            overlayClassName={styles.overlay}
-            className={styles.modal}
+            isOpen={isOpen} //Informando se o modal ta aberto
+            onRequestClose={close} 
+            overlayClassName={styles.overlay} //Estilos do overlay
+            className={styles.modal} //Estilos do modal 
             >
             <div className={styles.conteinerModal}>
-                {materias.length == 0 ? 
+                {materias.length == 0 ? /*Verificando se há materia cadastrada*/
                 <div className={styles.semMateria}>
                     <p>Não há materias cadastradas...</p>
                         <button onClick={() => { handleAdd(conteudo) }}>Cadastrar materias</button>
@@ -68,7 +67,7 @@ export default function ModalInfos({ isOpen, conteudo, close, materias }){
                             )}
                 </div> : 
 
-                <div>
+                <div> {/*Caso hajam materias cadastradas*/}
                     <div >
                         <div className={styles.header}>
                             <div className={styles.title}>

@@ -12,34 +12,34 @@ export default function CadastraAluno(){
     const [turma, setTurma] = useState('')
     const [serie, setSerie] = useState('')
     
-    const { getTurmas, turmas, getAlunos } = useContext(ContextsAPI)
-    const teste = []
+    const { getTurmas, turmas, getAlunos } = useContext(ContextsAPI) //Captirando dados do useContext
+    const serieSelecionada = []
     async function AddAluno(turmas){
 
-        if(nome === '' || idade === '' || turma === ''){
+        if(nome === '' || idade === '' || turma === ''){ //Verificando se todos os dados foram preenchidos
             alert('Favor preencher todos os campos ')
             return
         }
-        turmas.map(value=> {
+        turmas.map(value=> { //Verificando qual a serie vinculada a turma selecionada
             if (turma == value.turma){
-                teste.push(value.serie)
+                serieSelecionada.push(value.serie)
                 
             }
         })
-        await base.post('alunos', {
+        await base.post('alunos', { //Função para atualizar dados
                 nome: nome,
                 idade: parseInt(idade),
                 aluno_turma: parseInt(turma),
-                aluno_serie: teste[0]
+            aluno_serie: serieSelecionada[0]
         })
         alert('Aluno cadastrado com sucesso!')
-        getAlunos()
-        Router.push('/Alunos')
+        getAlunos() //Rodando função para solicitar dados dos alunos e atualizar na pagina Alunos
+        Router.push('/Alunos') //Direcionando para a pagina alunos em caso de sucesso
     }   
     
 
     useEffect(()=>{
-        getTurmas()
+        getTurmas() //Coletando dados da pagina Turmas
     }, [])
     return(
         <>
