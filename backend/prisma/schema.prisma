@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:admin@localhost:5432/ControleAlunos?schema=public"
+  url      = "postgresql://postgres:root@localhost:5432/ControleAlunos?schema=public"
 }
 
 model Turmas{ //Tabela de turmas no banco de dados
