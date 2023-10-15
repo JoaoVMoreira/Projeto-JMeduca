@@ -8,13 +8,13 @@
 
 ## 🖼 Screenshot das telas da aplicação
 
-<img src="/medias/turmas.PNG" alt="Imagem da tela de calculo de IMC com um desenho obeso">
+<img src="/medias/turmas.PNG" alt="">
 
-<img src="/medias/addAluno.PNG" alt="Imagem da tela de calculo de IMC com um desenho obeso">
+<img src="/medias/addAluno.PNG" alt="">
 
-<img src="/medias/alunos.PNG" alt="Imagem da tela de calculo de IMC com um desenho obeso">
+<img src="/medias/alunos.PNG" alt="">
 
-<img src="/medias/EditarAluno.PNG" alt="Imagem da tela de calculo de IMC com um desenho obeso">
+<img src="/medias/EditarAluno.PNG" alt="">
 <br/>
 
 
