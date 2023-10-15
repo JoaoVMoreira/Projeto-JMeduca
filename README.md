@@ -30,7 +30,7 @@ No projeto foram utilizadas as seguintes tecnologias;
 
 1. Utilie o comando GitClone em um repositório no seu CMD:
 
-        git clone https://github.com/JoaoVMoreira/Projeto---JM-Financas.git .
+        git clone https://github.com/JoaoVMoreira/Projeto-JMeduca.git .
 
 2. Em seguida é necessário iniciar o backend do projeto;
     *   Acessar a pasta BackEnd e utilizar o codigo "yarn dev".
