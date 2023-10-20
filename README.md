@@ -92,7 +92,7 @@
 
 ```bash
 # Clonar o repositório
-git clone https://github.com/teteusAraujo/I-need-to-learn
+git clone https://github.com/teteusAraujo/I-need-to-learn](https://github.com/JoaoVMoreira/Projeto-JMeduca.git
 
 # Criar banco de dados postgresql com o nome ControleAlunos e senha Root. 
 
